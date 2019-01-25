@@ -15,6 +15,8 @@ From Bureau of Economic Analysis, US Department of Commerce, the GDP over time o
 import pandas as pd
 import numpy as np
 import csv
+import scipy
+from scipy.stats import ttest_ind
 
 def get_list_of_university_towns():
     '''Returns a DataFrame of towns and the states they are in from the 
@@ -60,7 +62,6 @@ def get_list_of_university_towns():
 
     
     return df
-get_list_of_university_towns()
 
 ###############STEP2
 
@@ -115,7 +116,6 @@ def get_recession_start():
     
     
     return df['yearquarter'][ansindex]
-get_recession_start()
 
 ###############STEP3
 
@@ -161,7 +161,6 @@ def get_recession_end():
 
        
     return recessionendlst[0]
-get_recession_end()
 
 ###############STEP4
 
@@ -206,9 +205,6 @@ def get_recession_bottom():
         count=count+1
        
     return recessionbottomlst[0]
-    
-    
-get_recession_bottom()
 
 ###############STEP4
 
@@ -258,13 +254,8 @@ def convert_housing_data_to_quarters():
     
     pd.options.display.float_format = '{:f}'.format #convert scientific notation to float notation
     return df_final
-convert_housing_data_to_quarters()
 
 ###############STEP5/FINAL STEP
-
-import numpy as np
-import scipy
-from scipy.stats import ttest_ind
 
 def run_ttest():
     '''First creates new data showing the decline or growth of housing prices
